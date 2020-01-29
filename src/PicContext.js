@@ -11,7 +11,7 @@ function PicContextProvider(props) {
     }, []);
 
     return (
-        <PicContext.Provider value={{allPhotos, setAllPhotos}}>
+        <PicContext.Provider value={{allPhotos}}>
             {props.children}
         </PicContext.Provider>
     );
