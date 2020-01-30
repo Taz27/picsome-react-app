@@ -5,6 +5,18 @@ function PicContextProvider(props) {
     const [allPhotos, setAllPhotos] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
 
+    function toggleFavorite(imgId) {
+        //console.log(imgId);
+        let newImgArray = allPhotos.map(pic => {
+            if (pic.id === imgId) {
+                return {...pic, isFavorite: !pic.isFavorite} 
+            }
+            return pic;
+        });
+
+        setAllPhotos(newImgArray);
+    }
+    
     useEffect(() => {
         setIsLoading(true);
 
@@ -17,7 +29,7 @@ function PicContextProvider(props) {
     }, []);
 
     return (
-        <PicContext.Provider value={{allPhotos, isLoading}}>
+        <PicContext.Provider value={{allPhotos, isLoading, toggleFavorite}}>
             {props.children}
         </PicContext.Provider>
     );
