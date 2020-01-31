@@ -23,29 +23,15 @@ function PicContextProvider(props) {
     }
 
     function addToCart(img) {
-        let found = false;
-        for(let i = 0; i < cartItems.length; i++) {
-            if (cartItems[i].id === img.id) {
-                found = true;
-                break;
-            }
-        }
-
-        if (!found) {
-            setCartItems(prevCart => [...prevCart, img]);
-        }
-        
+        //Add item to cartItems state array
+        setCartItems(prevCart => [...prevCart, img]);
     }
-    //console.log(JSON.stringify(cartItems));
-    
-    // useEffect(() => {
-    //     //get all the favorite photos in a new array
-    //     let favPhotos = allPhotos.filter(pic => pic.isFavorite);
-    //     //console.log("fav pics: " + JSON.stringify(favPhotos));
-        
-    //     //Store Favorited Photos in session
-    //     localStorage.setItem("favoritePics", JSON.stringify(favPhotos));
-    // }, [allPhotos]);
+
+    function removeFromCart(img) {  
+        //Remove item from cartItems state array
+        setCartItems(prevCart => prevCart.filter(item => item.id !== img.id));
+    }
+    console.log(JSON.stringify(cartItems));
     
     useEffect(() => {
         if (typeof(Storage) !== "undefined") {
@@ -55,7 +41,7 @@ function PicContextProvider(props) {
                 return;
             }
         }
-        
+
         setIsLoading(true);
 
         fetch('https://raw.githubusercontent.com/bobziroll/scrimba-react-bootcamp-images/master/images.json')
@@ -67,7 +53,7 @@ function PicContextProvider(props) {
     }, []);
 
     return (
-        <PicContext.Provider value={{allPhotos, isLoading, toggleFavorite, addToCart}}>
+        <PicContext.Provider value={{allPhotos, isLoading, toggleFavorite, addToCart, cartItems, removeFromCart}}>
             {props.children}
         </PicContext.Provider>
     );
