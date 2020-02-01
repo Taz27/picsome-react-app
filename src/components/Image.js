@@ -4,10 +4,13 @@ import PropTypes from "prop-types";
 import useHover from "../hooks/useHover";
 
 function Image(props) {
+    //get hovered state and ref object from custom hook
     const [hovered, ref] = useHover();
 
+    //pull out the required variables from Context
     const {toggleFavorite, addToCart, cartItems, removeFromCart} = useContext(PicContext);
 
+    //check if this image is already in cart to style the cart icon accordingly
     let isAlreadyInCart = cartItems.some(pic => pic.id === props.img.id);
     
     return (
@@ -28,6 +31,7 @@ function Image(props) {
     );
 }
 
+//add a propTypes property to the component to set the acceptable types of props passed 
 Image.propTypes = {
     className: PropTypes.string,
     img: PropTypes.shape({

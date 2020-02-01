@@ -3,7 +3,10 @@ import { Link } from "react-router-dom";
 import { PicContext } from "../PicContext";
 
 function Header() {
+    //grab cartItems from Context
     const {cartItems} = useContext(PicContext);
+    
+    //store the appropriate class to style the cart icon in a variable as per the state of the cart
     let cartIconClass = cartItems.length > 0 ? "fill" : "line";
 
     return (
