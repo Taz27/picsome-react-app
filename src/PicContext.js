@@ -31,7 +31,7 @@ function PicContextProvider(props) {
         //Remove item from cartItems state array
         setCartItems(prevCart => prevCart.filter(item => item.id !== img.id));
     }
-    console.log(JSON.stringify(cartItems));
+    //console.log(JSON.stringify(cartItems));
     
     useEffect(() => {
         if (typeof(Storage) !== "undefined") {
