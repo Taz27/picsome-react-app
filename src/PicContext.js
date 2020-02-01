@@ -31,7 +31,18 @@ function PicContextProvider(props) {
         //Remove item from cartItems state array
         setCartItems(prevCart => prevCart.filter(item => item.id !== img.id));
     }
-    //console.log(JSON.stringify(cartItems));
+    
+    function placeOrder(e) {
+        //const event = {...e};
+        e.persist();
+    
+        e.target.innerText = "Ordering...";
+        setTimeout(() => {
+            console.log("Order Placed!");
+            e.target.innerText = "Place Order";
+            setCartItems([]);
+        }, 3000);
+    }
     
     useEffect(() => {
         if (typeof(Storage) !== "undefined") {
@@ -53,7 +64,7 @@ function PicContextProvider(props) {
     }, []);
 
     return (
-        <PicContext.Provider value={{allPhotos, isLoading, toggleFavorite, addToCart, cartItems, removeFromCart}}>
+        <PicContext.Provider value={{allPhotos, isLoading, toggleFavorite, addToCart, cartItems, removeFromCart, placeOrder}}>
             {props.children}
         </PicContext.Provider>
     );

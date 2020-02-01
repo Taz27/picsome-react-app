@@ -1,16 +1,17 @@
-import React, {useState, useContext} from "react";
-import {PicContext} from "../PicContext";
+import React, { useContext } from "react";
+import { PicContext } from "../PicContext";
 import PropTypes from "prop-types";
+import useHover from "../hooks/useHover";
 
 function Image(props) {
-    const [hovered, setHovered] = useState(false);
+    const [hovered, ref] = useHover();
 
     const {toggleFavorite, addToCart, cartItems, removeFromCart} = useContext(PicContext);
 
     let isAlreadyInCart = cartItems.some(pic => pic.id === props.img.id);
     
     return (
-        <div className={`${props.className} image-container`} onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}>
+        <div className={`${props.className} image-container`} ref={ref}>
             <img src={props.img.url} alt="" className="image-grid" />
             {hovered ? 
             <>
