@@ -1,3 +1,4 @@
+import 'remixicon/fonts/remixicon.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {BrowserRouter as Router} from 'react-router-dom'; //for conditionally rendering the page components as per routes
